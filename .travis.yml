@@ -12,7 +12,9 @@ before_install:
   - rvm install ruby-2.3.3
   - gem install bundle
   - bundle install
-  
+ 
+install: gem install rails
+
 script:
   - export REPO=scalarm/scalarm_experiment_manager
   - docker build . -f Dockerfile -t $REPO
