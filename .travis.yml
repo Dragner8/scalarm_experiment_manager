@@ -7,28 +7,18 @@ services:
 #rvm:
 #  - 2.3
 
-before_install:
-  - sudo apt-get install -y curl zip git sysstat r-base-core
-  - rvm install ruby-2.3.3
-  - gem install bundle
-  - bundle install
+
  
 install: gem install rails
 
 script:
   - export REPO=scalarm/scalarm_experiment_manager
   - docker build . -f Dockerfile -t $REPO
- 
-before_deploy:	
   - docker tag $REPO $REPO:$TRAVIS_TAG
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-deploy:
-  - provider: script
-    script:
-      docker push $REPO 
-    on:
-      branch: master
-      tags: true
+  -  docker push $REPO 
+ 
+
    
 env:
   global:
