@@ -14,7 +14,7 @@ install: gem install rails
 script:
   - export REPO=scalarm/scalarm_experiment_manager
   - docker build . -f Dockerfile -t $REPO
-  - docker tag $REPO $REPO:$TRAVIS_TAG
+  - docker tag $REPO $REPO:tmp
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
   -  docker push $REPO 
  
